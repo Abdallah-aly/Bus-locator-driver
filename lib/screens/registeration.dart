@@ -85,153 +85,150 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 10),
-                    Image(
-                      image: AssetImage('images/logo.png'),
-                      alignment: Alignment.center,
-                      height: 150.0,
-                      width: 150.0,
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Text(
-                      'Create a Driver\'s Account',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 25.0, fontFamily: 'Brand-Bold'),
-                    ),
-                    //fullname
-                    TextField(
-                      controller: fullNameController,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                          labelText: 'Full name',
-                          labelStyle: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                          hintStyle:
-                              TextStyle(color: Colors.grey, fontSize: 10.0)),
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    SizedBox(height: 5.0),
-                    //email
-                    TextField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          labelText: 'E-mail address',
-                          labelStyle: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                          hintStyle:
-                              TextStyle(color: Colors.grey, fontSize: 10.0)),
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    SizedBox(height: 5.0),
-                    //phone
-                    TextField(
-                      controller: phoneController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          labelText: 'Phone number',
-                          labelStyle: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                          hintStyle:
-                              TextStyle(color: Colors.grey, fontSize: 10.0)),
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    SizedBox(height: 5.0),
-                    //password
-                    TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                          hintStyle:
-                              TextStyle(color: Colors.grey, fontSize: 10.0)),
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    SizedBox(height: 20),
-                    TaxiButton(
-                      text: "REGISTER",
-                      color: Colors.yellow[700],
-                      onPressed: () async {
-                        //check connectivity
-                        var connectivityResult =
-                            await (Connectivity().checkConnectivity());
-                        if (connectivityResult != ConnectivityResult.mobile &&
-                            connectivityResult != ConnectivityResult.wifi) {
-                          showSnackBar('You are Offline');
-                          return;
-                        }
-
-                        if (fullNameController.text.length < 3) {
-                          showSnackBar('Please provide a valid full name');
-                          return;
-                        }
-                        if (!emailController.text.contains('@')) {
-                          showSnackBar('Please provide a valid E-mail');
-                          return;
-                        }
-                        if (phoneController.text.length < 10 ||
-                            phoneController.text.length > 12) {
-                          showSnackBar('Please provide a valid phone number');
-                          return;
-                        }
-                        if (passwordController.text.isEmpty) {
-                          showSnackBar('Please Add Password');
-                          return;
-                        } else if (passwordController.text.length < 9) {
-                          showSnackBar('Week Password');
-                          return;
-                        }
-                        registerUser();
-                      },
-                    ),
-                    SizedBox(height: 15),
-                    // ignore: deprecated_member_use
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, LoginPage.id, (route) => false);
-                      },
-                      child: Text(
-                        'Already have a Driver account? Log in',
-                        style: TextStyle(fontSize: 12.0),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Image(
+                        image: AssetImage('images/logo.png'),
+                        alignment: Alignment.center,
+                        height: 150.0,
+                        width: 150.0,
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        'Create a Driver\'s Account',
+                        textAlign: TextAlign.center,
+                        style:
+                            TextStyle(fontSize: 25.0, fontFamily: 'Brand-Bold'),
+                      ),
+                      //fullname
+                      TextField(
+                        controller: fullNameController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Full name',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                      SizedBox(height: 5.0),
+                      //email
+                      TextField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            labelText: 'E-mail address',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                      SizedBox(height: 5.0),
+                      //phone
+                      TextField(
+                        controller: phoneController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'Phone number',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                      SizedBox(height: 5.0),
+                      //password
+                      TextField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                      SizedBox(height: 20),
+                      TaxiButton(
+                        text: "REGISTER",
+                        color: Colors.yellow[700],
+                        onPressed: () async {
+                          //check connectivity
+                          var connectivityResult =
+                              await (Connectivity().checkConnectivity());
+                          if (connectivityResult != ConnectivityResult.mobile &&
+                              connectivityResult != ConnectivityResult.wifi) {
+                            showSnackBar('You are Offline');
+                            return;
+                          }
+
+                          if (fullNameController.text.length < 3) {
+                            showSnackBar('Please provide a valid full name');
+                            return;
+                          }
+                          if (!emailController.text.contains('@')) {
+                            showSnackBar('Please provide a valid E-mail');
+                            return;
+                          }
+                          if (phoneController.text.length < 10 ||
+                              phoneController.text.length > 12) {
+                            showSnackBar('Please provide a valid phone number');
+                            return;
+                          }
+                          if (passwordController.text.isEmpty) {
+                            showSnackBar('Please Add Password');
+                            return;
+                          } else if (passwordController.text.length < 9) {
+                            showSnackBar('Week Password');
+                            return;
+                          }
+                          registerUser();
+                        },
+                      ),
+                      SizedBox(height: 15),
+                      // ignore: deprecated_member_use
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, LoginPage.id, (route) => false);
+                        },
+                        child: Text(
+                          'Already have a Driver account? Log in',
+                          style: TextStyle(fontSize: 12.0),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: ClipPath(
+            ClipPath(
               clipper: WaveClipperTwo(flip: true, reverse: true),
               child: Container(
-                height: MediaQuery.of(context).size.height / 14.5,
+                height: 160,
                 color: Colors.yellow[700],
                 child: Center(),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

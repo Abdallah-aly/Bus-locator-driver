@@ -59,7 +59,7 @@ class _HomeTabState extends State<HomeTab> {
     return Stack(
       children: <Widget>[
         GoogleMap(
-          padding: EdgeInsets.only(top: 150),
+          padding: EdgeInsets.only(top: 500),
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
           mapType: MapType.normal,
@@ -100,7 +100,7 @@ class _HomeTabState extends State<HomeTab> {
                                 getLocationUpdate();
                                 Navigator.pop(context);
                                 setState(() {
-                                  availabilitycolor = Colors.green[400];
+                                  availabilitycolor = Colors.redAccent[400];
                                   availabilityTitle = 'GO OFFLINE';
                                   isAvailable = true;
                                 });

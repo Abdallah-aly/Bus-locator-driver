@@ -1,8 +1,6 @@
 import 'package:cap_driver/brand_colors.dart';
-import 'package:cap_driver/tabs/earningstab.dart';
 import 'package:cap_driver/tabs/hometab.dart';
 import 'package:cap_driver/tabs/profiletab.dart';
-import 'package:cap_driver/tabs/rateingtab.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +25,7 @@ class _MainPageState extends State<MainPage>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 4, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -44,8 +42,6 @@ class _MainPageState extends State<MainPage>
         controller: tabController,
         children: [
           HomeTab(),
-          EarningTab(),
-          RatingTap(),
           ProfileTab(),
         ],
       ),
@@ -54,14 +50,6 @@ class _MainPageState extends State<MainPage>
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.credit_card),
-            label: 'earining',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Rate',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
